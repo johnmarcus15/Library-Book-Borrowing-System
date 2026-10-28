@@ -1,0 +1,35 @@
+{
+  "name": "library-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "mongo": "node scripts/startLocalMongo.js",
+    "seed": "node scripts/seed.js",
+    "admin:create": "node scripts/createAdmin.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^11.3.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {},
+    "testTimeout": 20000
+  }
+}

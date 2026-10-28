@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { authenticate } from '../middleware/authenticate.js';
+import { borrowValidators, create, mine, getOne, giveBack } from '../controllers/borrowingController.js';
+const r = Router();
+r.use(authenticate);
+r.post('/', borrowValidators, create);
+r.get('/my', mine);
+r.get('/:id', getOne);
+r.post('/:id/return', giveBack);
+export default r;

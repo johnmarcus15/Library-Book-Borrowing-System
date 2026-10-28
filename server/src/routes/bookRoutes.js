@@ -1,0 +1,14 @@
+import { Router } from 'express';
+import { authenticate, authorize } from '../middleware/authenticate.js';
+import * as c from '../controllers/bookController.js';
+import { ApiError } from '../utils/ApiError.js';
+const r = Router();
+const goodId = (req, _res, next) => (/^[a-f\d]{24}$/i.test(req.params.id) ? next() : next(new ApiError(400, 'Invalid id')));
+const admin = [authenticate, authorize('ADMIN')];
+r.get('/', c.list);
+r.get('/categories', c.categories);
+r.get('/:id', goodId, c.getOne);
+r.post('/', admin, c.bookRules(false), c.create);
+r.put('/:id', admin, goodId, c.bookRules(true), c.update);
+r.delete('/:id', admin, goodId, c.remove);
+export default r;
